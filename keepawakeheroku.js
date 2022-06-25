@@ -39,7 +39,7 @@ const keepAwakeHeroku = (urls) => {
     });
 
     keepAwakeHeroku(urls);
-  }, 3000); // ping every 29 minutes - 29 * 60000
+  }, 10000); // ping every 29 minutes - 29 * 60000
 };
 
 // const promises = urls.map((url) =>
