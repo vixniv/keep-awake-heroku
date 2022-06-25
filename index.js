@@ -9,7 +9,17 @@ let urls = [
   { app: "latihan-deploy-sequelize", start: 12, end: 00 },
 ];
 
+app.get("/", (req, res) => {
+  keepAwakeHeroku(urls);
+  res.send(
+    "Thank you for using this app, docs: https://github.com/vixniv/keep-awake-heroku"
+  );
+});
+
+app.all("*", (req, res) => {
+  res.send("404 not found");
+});
+
 app.listen(PORT, () => {
   console.log("Listening on port: " + PORT);
-  keepAwakeHeroku(urls);
 });
