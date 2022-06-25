@@ -1,7 +1,7 @@
 const axios = require("axios").default;
 
 const keepAwakeHeroku = (urls) => {
-  setTimeout(() => {
+  const timerID = setInterval(() => {
     const timeNow = new Date();
     let timeNowJakarta = timeNow.toLocaleString("en-US", {
       timeZone: "Asia/Jakarta",
@@ -38,8 +38,10 @@ const keepAwakeHeroku = (urls) => {
       }
     });
 
-    keepAwakeHeroku(urls);
+    // keepAwakeHeroku(urls);
   }, 29 * 60000); // ping every 29 minutes - 29 * 60000
+
+  return timerID;
 };
 
 // const promises = urls.map((url) =>

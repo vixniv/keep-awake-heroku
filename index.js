@@ -2,9 +2,10 @@ const express = require("express");
 const app = express();
 const PORT = process.env.PORT || 3000;
 const keepAwakeHeroku = require("./keepawakeheroku");
+require("dotenv").config();
 
 // list of urls to ping
-let urls = [{ app: "react-yoram", start: 00, end: 23 }];
+let urls = [{ app: "react-yoram", start: 00, end: 00 }];
 
 app.get("/", (req, res) => {
   res.send(
@@ -12,9 +13,24 @@ app.get("/", (req, res) => {
   );
 });
 
+let ID;
 app.get("/run", (req, res) => {
-  keepAwakeHeroku(urls);
-  res.send("Running...");
+  const { stop, password } = req.query;
+  if (stop !== "true" || password !== process.env.PASSWORD) {
+    if (!ID) {
+      ID = keepAwakeHeroku(urls);
+      console.log(ID);
+      res.send("Running...");
+    } else {
+      console.log(ID);
+      res.send("Already running...");
+    }
+  } else {
+    clearInterval(ID);
+    console.log(ID);
+    ID = null;
+    res.send("Stopped...");
+  }
 });
 
 app.all("*", (req, res) => {
