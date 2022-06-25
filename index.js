@@ -4,16 +4,17 @@ const PORT = process.env.PORT || 3000;
 const keepAwakeHeroku = require("./keepawakeheroku");
 
 // list of urls to ping
-let urls = [
-  { app: "react-yoram", start: 12, end: 00 },
-  { app: "latihan-deploy-sequelize", start: 12, end: 00 },
-];
+let urls = [{ app: "react-yoram", start: 00, end: 23 }];
 
 app.get("/", (req, res) => {
-  keepAwakeHeroku(urls);
   res.send(
     "Thank you for using this app, docs: https://github.com/vixniv/keep-awake-heroku"
   );
+});
+
+app.get("/run", (req, res) => {
+  keepAwakeHeroku(urls);
+  res.send("Running...");
 });
 
 app.all("*", (req, res) => {
