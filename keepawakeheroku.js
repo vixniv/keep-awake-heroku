@@ -3,7 +3,7 @@ const axios = require("axios").default;
 const keepAwakeHeroku = (urls) => {
   setTimeout(() => {
     const timeNow = new Date();
-    const timeNowJakarta = timeNow.toLocaleString("en-US", {
+    let timeNowJakarta = timeNow.toLocaleString("en-US", {
       timeZone: "Asia/Jakarta",
       hour: "numeric",
       hour12: false,
@@ -12,6 +12,17 @@ const keepAwakeHeroku = (urls) => {
     urls.forEach((url) => {
       !url.start ? (url.start = 00) : url.start;
       !url.end ? (url.end = 24) : url.end;
+
+      // handle if time range is minus, e.g. 18-06
+      if (url.end - url.start < 0) {
+        url.end += 24;
+        if (timeNowJakarta < url.start) {
+          timeNowJakarta += 24;
+          if (timeNowJakarta < url.end) {
+            timeNowJakarta -= 24;
+          }
+        }
+      }
 
       if (url.start <= timeNowJakarta && url.end > timeNowJakarta) {
         axios
@@ -28,7 +39,7 @@ const keepAwakeHeroku = (urls) => {
     });
 
     keepAwakeHeroku(urls);
-  }, 29 * 60000); // ping every 29 minutes - 29 * 60000
+  }, 10000); // ping every 29 minutes - 29 * 60000
 };
 
 // const promises = urls.map((url) =>
