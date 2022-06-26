@@ -6,14 +6,14 @@ const keepAwakeHeroku = (urls) => {
     try {
       urls = await App.find();
 
-      const timeNow = new Date();
-      let timeNowJakarta = timeNow.toLocaleString("en-US", {
-        timeZone: "Asia/Jakarta",
-        hour: "numeric",
-        hour12: false,
-      });
-
       urls.forEach((url) => {
+        const timeNow = new Date();
+        let timeNowJakarta = timeNow.toLocaleString("en-US", {
+          timeZone: "Asia/Jakarta",
+          hour: "numeric",
+          hour12: false,
+        });
+
         !url.start ? (url.start = 00) : url.start;
         !url.end ? (url.end = 24) : url.end;
 
