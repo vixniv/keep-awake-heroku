@@ -8,7 +8,7 @@ const keepAwakeHeroku = (urls) => {
 
       urls.forEach((url) => {
         const timeNow = new Date();
-        let timeNowJakarta = timeNow.toLocaleString("en-US", {
+        let timeNowJakarta = timeNow.toLocaleString("id-ID", {
           timeZone: "Asia/Jakarta",
           hour: "numeric",
           hour12: false,
