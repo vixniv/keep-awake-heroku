@@ -22,9 +22,9 @@ const keepAwakeHeroku = (urls) => {
           url.end += 24;
           if (timeNowJakarta < url.start) {
             timeNowJakarta += 24;
-            if (timeNowJakarta < url.end) {
-              timeNowJakarta -= 24;
-            }
+            // if (timeNowJakarta < url.end) {
+            //   timeNowJakarta -= 24;
+            // }
           }
         }
 
