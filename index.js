@@ -5,7 +5,10 @@ const keepAwakeHeroku = require("./keepawakeheroku");
 require("dotenv").config();
 
 // list of urls to ping
-let urls = [{ app: "react-yoram", start: 00, end: 00 }];
+let urls = [
+  { app: "keepawakeheroku", start: 00, end: 00 },
+  { app: "react-yoram", start: 00, end: 00 },
+];
 
 app.get("/", (req, res) => {
   res.send(
