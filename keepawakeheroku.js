@@ -39,7 +39,7 @@ const keepAwakeHeroku = (urls) => {
     });
 
     // keepAwakeHeroku(urls);
-  }, 5 * 60000); // ping every 29 minutes - 29 * 60000
+  }, 29 * 60000); // ping every 29 minutes - 29 * 60000
 
   return timerID;
 };
