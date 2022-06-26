@@ -10,7 +10,7 @@ const addApp = async (req, res, next) => {
     const { app, start = 0, end = 24 } = req.body;
 
     const appExist = await App.findOne({ app });
-    // console.log(appExist);
+
     if (appExist) {
       throw new Error("App already exist");
     }
@@ -36,18 +36,20 @@ const addApp = async (req, res, next) => {
 const deleteApp = async (req, res, next) => {
   try {
     const { app } = req.body;
-    const deleteApp = await App.findOne({ app });
 
     if (!app) {
       throw new Error("App field is required");
     }
 
+    if (app === "keepawakeheroku") {
+      throw new Error("You can't delete this app");
+    }
+
+    const deleteApp = await App.findOne({ app });
+
     if (!deleteApp) {
       throw new Error("App not found");
     }
-
-    // console.log(app);
-    // console.log(deleteApp);
 
     await deleteApp.deleteOne();
 
