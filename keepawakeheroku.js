@@ -29,15 +29,15 @@ const keepAwakeHeroku = (urls) => {
         }
 
         if (url.start <= timeNowJakarta && url.end > timeNowJakarta) {
-          console.log(`Wake up https://${url.app}.herokuapp.com/`);
-          // axios
-          //   .get(`https://${url.app}.herokuapp.com/`)
-          //   .then(() => {
-          //     console.log(`Wake up https://${url.app}.herokuapp.com/`);
-          //   })
-          //   .catch(() => {
-          //     console.log(`Error waking up https://${url.app}.herokuapp.com/`);
-          //   });
+          // console.log(`Wake up https://${url.app}.herokuapp.com/`);
+          axios
+            .get(`https://${url.app}.herokuapp.com/`)
+            .then(() => {
+              console.log(`Wake up https://${url.app}.herokuapp.com/`);
+            })
+            .catch(() => {
+              console.log(`Error waking up https://${url.app}.herokuapp.com/`);
+            });
         } else {
           console.log(`Still dreaming https://${url.app}.herokuapp.com/`);
         }
@@ -47,7 +47,7 @@ const keepAwakeHeroku = (urls) => {
     } catch (error) {
       console.log(error);
     }
-  }, 5000); // ping every 29 minutes - 29 * 60000
+  }, 29 * 60000); // ping every 29 minutes - 29 * 60000
 
   return timerID;
 };
