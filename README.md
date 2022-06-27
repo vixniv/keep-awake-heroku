@@ -8,7 +8,7 @@ From now on, if you want to make your heroku app awake, you need to send http re
 
 ### Add App
 ```bash
-https://keep-awake-heroku.vercel.app/app
+https://keepawakeheroku.herokuapp.com/app
 ```
 
 | Method | Body  | Required | Type   |
@@ -19,7 +19,7 @@ https://keep-awake-heroku.vercel.app/app
 
 ### Delete App
 ```bash
-https://keep-awake-heroku.vercel.app/app
+https://keepawakeheroku.herokuapp.com/app
 ```
 
 | Method | Body  | Required | Type   |
